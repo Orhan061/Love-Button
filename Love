@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: black;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #loveButton {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff6b6b, #ff9c9c);
+            border: none;
+            border-radius: 75px; /* Making it circular */
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #loveButton:hover {
+            transform: scale(1.05);
+        }
+
+        #message {
+            position: absolute;
+            top: -50px; /* Adjust the position above the button */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.5s;
+        }
+
+        .star {
+            color: yellow;
+            position: absolute;
+            font-size: 10px;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="message"></div>
+<button id="loveButton" onclick="showLove()">❤️</button>
+
+<script>
+    const phrases = [
+        "Je t'aime", // French
+        "Ich liebe dich", // German
+        "Te amo", // Spanish
+        "Ti amo", // Italian
+        "我爱你 (Wǒ ài nǐ)", // Chinese
+        "愛してる (Aishiteru)", // Japanese
+        "사랑해요 (Saranghaeyo)", // Korean
+        "Я люблю тебя (Ya lyublyu tebya)", // Russian
+        "Eu te amo", // Portuguese
+        "Ik hou van jou", // Dutch
+        "Εγώ σε αγαπώ (Egó se agapó)", // Greek
+        "Te iubesc", // Romanian
+        "Ikh hob dikh", // Yiddish
+        "मैं तुमसे प्यार करता हूँ (Main tumse pyar karta hoon)", // Hindi
+        "Ngo oi nei", // Cantonese
+    ];
+
+    function showLove() {
+        const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        const messageDiv = document.getElementById("message");
+        messageDiv.textContent = randomPhrase;
+        messageDiv.style.opacity = 1;
+
+        setTimeout(() => {
+            messageDiv.style.opacity = 0; // Fade out after 5 seconds
+        }, 5000);
+    }
+
+    // Create little stars (yellow hearts)
+    for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.textContent = '💛';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.fontSize = Math.random() * 10 + 5 + 'px'; // Random size
+        document.body.appendChild(star);
+    }
+</script>
+
+</body>
+</html>
